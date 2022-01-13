@@ -1,0 +1,21 @@
+{
+  "name": "translate-bot",
+  "main": "bot.js",
+  "author": "Imisuuu",
+  "version": "1.0.0",
+  "description": "Simple discord bot that uses Google Translate API.",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon bot.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@vitalets/google-translate-api": "^7.0.0",
+    "configstore": "^6.0.0",
+    "discord.js": "^13.5.1",
+    "got": "^12.0.1",
+    "nodemon": "^2.0.15"
+  }
+}

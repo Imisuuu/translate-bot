@@ -39,6 +39,11 @@ client.on('messageCreate', (msg) => {
       else if (command === 'lang' || command === 'setLanguage'){
         if(args.length == 0) return msg.channel.send('You need to use arguments.');
         lang = args[0];
+      } else if (command === 'about'){
+          msg.channel.send(
+`>>>Author of this bot is **Imisuuu**
+Github: https://github.com/Imisuuu`
+);
       }
   }
 });

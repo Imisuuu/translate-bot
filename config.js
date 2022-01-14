@@ -1,5 +1,5 @@
 module.exports = {
-    token: 'XXX',
-    prefix: 'XXX',
-    lang: 'XX'
+    token: 'OTMxMjM0NjMzNDM2MjM3ODM0.YeBd1g.5mmI-dx74ZfoTD9rzWnXeCOJQv8',
+    prefix: '?',
+    lang: 'es'
 };

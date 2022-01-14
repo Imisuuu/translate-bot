@@ -4,6 +4,7 @@ const client = new Discord.Client({
 });
 const translate = require('@vitalets/google-translate-api');
 client.config = require('./config');
+const ISO6391 = require('iso-639-1');
 
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
@@ -27,6 +28,7 @@ client.on('messageCreate', (msg) => {
                 console.log(res.text);
                 //=> I speak English
                 msg.channel.send(res.text)
+                res.pronunciation
                 //=> nl
             }).catch(err => {
                 console.error(err);
@@ -36,15 +38,14 @@ client.on('messageCreate', (msg) => {
         }
         
       } 
-      else if (command === 'lang' || command === 'setLanguage'){
-        if(args.length == 0) return msg.channel.send('You need to use arguments.');
-        lang = args[0];
+      else if (command === 'lang' || command === 'getLanguage'){
+        msg.channel.send(`The language is **${ISO6391.getName(client.config.lang)}**.`); 
       } else if (command === 'about'){
           msg.channel.send(
 `>>>Author of this bot is **Imisuuu**
 Github: https://github.com/Imisuuu`
 );
-      }
+      } 
   }
 });
 

@@ -1,5 +1,5 @@
-const Discord = require('discord.js');
-const client = new Discord.Client({
+const {Client, MessageAttachment} = require('discord.js');
+const client = new Client({
     intents: ["GUILDS" ,"GUILD_MESSAGES"]
 });
 const translate = require('@vitalets/google-translate-api');
@@ -12,7 +12,7 @@ client.on('ready', () => {
   client.user.setActivity('Simple bot that uses Google Translate API.');
 });
 
-client.on('messageCreate', (msg) => {
+client.on('messageCreate', async (msg) => {
   if(msg.author.bot) return;
   if(msg.content.startsWith(client.config.prefix)){
       const [command, ...args] = msg.content
@@ -40,7 +40,7 @@ client.on('messageCreate', (msg) => {
         
       } 
       else if (command === 'ta' || command === 'translateAdvanced'){
-        if (args.length == 0) return msg.reply('Args.lenght == 0');
+        if (args.length == 0) return msg.reply('args.length == 0');
         let languages;
         try {
           languages = args[0].split(',');
@@ -59,8 +59,6 @@ client.on('messageCreate', (msg) => {
 	        })
         }
 
-
-
       } else if (command === 'about'){
           msg.channel.send(
 `>>>Author of this bot is **Imisuuu**
@@ -71,13 +69,19 @@ Github: https://github.com/Imisuuu`
 ` ***         HELP ***
 >>> The prefix is **${client.config.prefix}**
 **Commands: **
-- translate (${client.config.prefix}t or ${client.config.prefix}translate)
+- translate (${client.config.prefix}t or ${client.config.prefix}translate + content to translate)
 - getLanguage (${client.config.prefix}lang or ${client.config.prefix}getLanguage)
 - about (${client.config.prefix}about)
 - help (${client.config.prefix}h or ${client.config.prefix}help)
+- langs (${client.config.prefix}langs)
+- advanced translate (${client.config.prefix}ta or ${client.config.prefix}translateAdvanced + languages separated by a comma + content to translate)
 
 The author is **${client.config.author}**
 `)
+      }
+      else if (command === 'langs'){
+        const attachment = new MessageAttachment("images/languages.png");
+        await msg.channel.send({ files: [attachment] });
       }
   }
 });

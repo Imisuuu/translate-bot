@@ -27,6 +27,7 @@ client.on('messageCreate', (msg) => {
     
                 //=> I speak English
                 let from = ISO6391.getName(res.from.language.iso);
+                console.log(res.from.language.iso);
                 msg.channel.send(`**Translated from ${from}: **${res.text}`);
 
                 //=> nl
@@ -38,8 +39,28 @@ client.on('messageCreate', (msg) => {
         }
         
       } 
-      else if (command === 'lang' || command === 'getLanguage'){
-        msg.channel.send(`The language is **${ISO6391.getName(client.config.lang)}**.`); 
+      else if (command === 'ta' || command === 'translateAdvanced'){
+        if (args.length == 0) return msg.reply('Args.lenght == 0');
+        let languages;
+        try {
+          languages = args[0].split(',');
+        } catch(err){
+          console.error(err);
+        }
+	      args.shift();
+        let string = args.join(' ');
+        for (let i=0; i<languages.length;i++){
+          translate(string, {to: languages[i]}).then(res => {
+            let langName = languages[i];
+            if(languages[i].length < 4){
+              langName = ISO6391.getName(languages[i]);
+            }
+            msg.channel.send(`In **${langName}**: ${res.text}`);          
+	        })
+        }
+
+
+
       } else if (command === 'about'){
           msg.channel.send(
 `>>>Author of this bot is **Imisuuu**

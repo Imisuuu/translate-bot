@@ -7,7 +7,7 @@
   "repository": "https://github.com/Imisuuu/translate-bot",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon bot.js"
+    "dev": "nodemon src/bot.js"
   },
   "keywords": [],
   "license": "ISC",

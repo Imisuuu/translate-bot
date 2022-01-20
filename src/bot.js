@@ -1,19 +1,15 @@
-const {Client, MessageAttachment} = require('discord.js');
+const {Client, Collection} = require('discord.js');
 global.client = new Client({
     intents: ["GUILDS" ,"GUILD_MESSAGES"]
 });
 client.config = require('./config');
 
+const commands = require('../handlers/commands')
 
-const translation = require('../commands/translate');
-const translateAdv = require('../commands/translateAdvanced');
-const about = require('../commands/about');
-const help = require('../commands/help');
-const langs = require('../commands/langs');
-const ready = require('../events/ready');
 
 client.on('ready', () => {
-  ready();
+  commands(Collection);
+  client.commands.get('ready').execute();
 });
 
 client.on('messageCreate', async (msg) => {
@@ -26,22 +22,24 @@ client.on('messageCreate', async (msg) => {
 
       if (command === 't' || command === 'translate')
       {
-        translation(args, msg);
+        client.commands.get('translate').execute(args, msg);
       } 
       else if (command === 'ta' || command === 'translateAdvanced')
       {
-        translateAdv(args, msg);
+        client.commands.get('translateAdv').execute(args, msg);
 
-      } else if (command === 'about')
+      } 
+      else if (command === 'about')
       {
-        about(msg);
-      } else if (command === 'help' || command === 'h')
+        client.commands.get('about').execute(msg);
+      } 
+      else if (command === 'help' || command === 'h')
       {
-        help(msg);
+        client.commands.get('help').execute(msg);
       }
       else if (command === 'langs')
       {
-        langs(msg, MessageAttachment);
+        client.commands.get('langs').execute(msg);
       }
 });
 

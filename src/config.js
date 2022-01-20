@@ -1,6 +1,5 @@
 module.exports = {
-    token: 'OTMxMjM0NjMzNDM2MjM3ODM0.YeBd1g.5mmI-dx74ZfoTD9rzWnXeCOJQv8',
-    prefix: '?',
-    lang: 'es',
-    author: 'Imisuuu'
+    token: 'XXX',
+    prefix: 'XXX',
+    lang: 'XXX', //e.g. es,fr,en
 };
